@@ -1,7 +1,6 @@
 #!/bin/python3
 
 import re
-import os.path
 import dateutil.parser
 import uuid
 import sqlite3
@@ -23,7 +22,7 @@ def xlread(filename):
     wbook = xlrd.open_workbook(filename)
     sheet = wbook.sheet_by_index(0)
     rollnos = list()
-    regp = re.compile(r'\w{2}\d{2}\w\d{3}', re.MULTILINE)
+    regp = re.compile(r'[A-Za-z]{2}\d{2}[A-Za-z]\d{3}', re.MULTILINE)
     for rowindex in range(sheet.nrows):
         st = ' '.join(map(str, sheet.row_values(rowindex)))
         rollmatch = regp.search(st)
